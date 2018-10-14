@@ -36,11 +36,11 @@ class TfsStoryImportComponent extends React.Component<any, any> {
     super(props);
     this.state = {
       modal: false,
-      username: "dwaldo",
-      personalAccessToken: "zropasi7z2xxa6zd2hresi6ytfnsybbzjoxyookg2akmxd2oydda",
-      tfsServer: "http://tfs.lsconsulting.com:8080/tfs/",
-      project: "AppDev",
-      team: "Development",
+      username: "",
+      personalAccessToken: "",
+      tfsServer: "",
+      project: "",
+      team: "",
       tfsQueryId: ""
     };
   }
