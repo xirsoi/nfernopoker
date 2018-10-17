@@ -17,7 +17,7 @@ export function getWorkItemsByWiql(tfsUrl: string, team: string, id: number, use
         if (results.value && results.value.Message) {
           errorReceived(results.value.Message);
         }
-        let workItems = (<TfsWorkItemQueryResponse>l).workItems;
+        let workItems = (<TfsWorkItemQueryResponse>results).workItems;
         let workItemIds = workItems.map(wi => wi.id);
 
         dispatch(getWorkItemsByIds(tfsUrl, workItemIds, username, pat, gameId));

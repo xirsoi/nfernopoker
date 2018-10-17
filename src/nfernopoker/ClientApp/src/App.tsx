@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import { withRouter } from "react-router";
 import Layout from './core/components/Layout';
 import LoginScreen from './scenes/login/LoginScreen';
-import { GameScreen } from './components/GameScreen';
+import { GameScreen } from './scenes/game/GameScreen';
 import { GamesScreen } from './components/Games';
 import { TeamsScreen } from './scenes/teams/TeamsScreen';
 import HomePageComponent from './scenes/home/Home';

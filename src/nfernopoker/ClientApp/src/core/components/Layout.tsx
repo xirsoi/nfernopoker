@@ -6,7 +6,7 @@ import AppHeader from './AppHeader';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { Component } from 'react';
-import { firebaseConnect, isEmpty } from 'react-redux-firebase'; //isEmpty
+import { firebaseConnect, isEmpty } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { SnackWrapper } from './SnackWrapper';
 
@@ -45,7 +45,7 @@ const styles: any = (theme: any) => ({
   content: {
     backgroundColor: theme.palette.background.default,
     backgroundImage: "url(" + require('../../../public/img/hell.jpg') + ")",
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit,
     minWidth: 0, // So the Typography noWrap works
     filter: 'saturate(125%)',
     gridArea: 'main'

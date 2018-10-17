@@ -1,10 +1,9 @@
 import * as React from "react";
-import { connect } from "react-redux";
-import { Paper } from "@material-ui/core";
-import { firebaseConnect, isLoaded } from 'react-redux-firebase';
 import { compose } from 'redux';
-import { withStyles } from '@material-ui/core/styles';
+import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { Paper, withStyles } from "@material-ui/core";
+import { firebaseConnect, isLoaded } from 'react-redux-firebase';
 import { Game, Story } from "../../core/models";
 import StoryForm from "./StoryForm";
 import StoryList from "./StoryList";
