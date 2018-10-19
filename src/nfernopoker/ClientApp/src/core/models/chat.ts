@@ -1,4 +1,3 @@
-
 export interface Chat {
   thread: Array<ChatMessage>;
 }

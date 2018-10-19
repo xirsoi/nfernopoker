@@ -94,7 +94,6 @@ class ChatForm extends React.Component<IProps, ITempState> {
 
     return (
       <div>
-
         <Paper className={classes.paper}>
           {messageCards}
           <div style={{ float: "left", clear: "both" }}
@@ -121,4 +120,3 @@ class ChatForm extends React.Component<IProps, ITempState> {
 }
 
 export default withStyles(styles)(ChatForm) as React.ComponentClass<any>;
-
