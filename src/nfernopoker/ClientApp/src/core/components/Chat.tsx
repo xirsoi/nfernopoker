@@ -32,11 +32,6 @@ const styles: any = (theme: any) => ({
   card: {
     minWidth: 275,
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
   title: {
     fontSize: 14,
   },
@@ -47,6 +42,8 @@ const styles: any = (theme: any) => ({
 
 class ChatForm extends React.Component<IProps, ITempState> {
 
+  messagesEnd: any = React.createRef()
+
   constructor(props: any) {
     super(props);
     this.state = {
@@ -55,7 +52,7 @@ class ChatForm extends React.Component<IProps, ITempState> {
   }
 
   handleOnFormChange = (event: ChangeEvent<HTMLInputElement>, name: string) => {
-    this.setState({ message: event.target.value });   
+    this.setState({ message: event.target.value });
     this.props.onFormChange(name, event.target.value);
   }
 
@@ -64,6 +61,18 @@ class ChatForm extends React.Component<IProps, ITempState> {
     event.stopPropagation();
     this.props.onSend();
     this.setState({ message: "" });
+  }
+
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
   }
 
   render(): JSX.Element {
@@ -88,14 +97,15 @@ class ChatForm extends React.Component<IProps, ITempState> {
 
         <Paper className={classes.paper}>
           {messageCards}
+          <div style={{ float: "left", clear: "both" }}
+            ref={(el) => { this.messagesEnd = el; }}>
+          </div>
         </Paper>
 
         <form noValidate autoComplete="off">
           <TextField id="story-desc"
             className={classes.textField}
             fullWidth={true}
-            multiline={true}
-            rows={1}
             value={this.state.message}
             label="Message"
             onChange={(e: any) => this.handleOnFormChange(e, 'message')}
