@@ -4,6 +4,7 @@ import { firebaseConnect, isLoaded } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from "react-router";
+import { gameKeyHoc, IGameKeyHocProps } from "../../core/components/gameKeyHoc";
 import { ChatMessage, Game } from "../../core/models";
 import Chat from "../../core/components/Chat";
 
@@ -19,7 +20,7 @@ interface ITempState {
   message: string;
 }
 
-type IProps = IOwnProps;
+type IProps = IOwnProps & IGameKeyHocProps;
 
 const styles: any = (theme: any) => ({
   container: {
@@ -37,10 +38,6 @@ class ChatPageComponent extends React.Component<IProps, ITempState> {
     super(props);
   }
 
-  getKey(): string {
-    return this.props.location.pathname.substring(7, 27);
-  }
-
   onMessageChange(name: string, value: string): void {
     let newState = { ...this.state };
     newState[name] = value
@@ -54,7 +51,7 @@ class ChatPageComponent extends React.Component<IProps, ITempState> {
       time: Date.now().toString()
     };
     let chatThread = this.props.game.chat ? [...this.props.game.chat.thread, message] : [message];
-    this.props.firebase.ref(`/games/${this.getKey()}/chat`).update({ thread: chatThread });
+    this.props.firebase.ref(`/games/${this.props.gameKey}/chat`).update({ thread: chatThread });
     this.setState({ message: "" });
   }
 
@@ -83,13 +80,13 @@ const mapStateToProps = (state: any) => ({
 });
 
 export default compose(
+  gameKeyHoc({ debug: true }),
   withStyles(styles),
   withRouter,
-  firebaseConnect((props: any) => {
-    let key = props.location.pathname.substring(7, 27);
+  firebaseConnect((props: IProps) => {
     return [
       "profile",
-      { path: "/games/" + key, storeAs: currentGame }
+      { path: "/games/" + props.gameKey, storeAs: currentGame }
     ]
   }),
   connect(mapStateToProps)
