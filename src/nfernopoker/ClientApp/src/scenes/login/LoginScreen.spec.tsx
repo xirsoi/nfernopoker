@@ -44,7 +44,6 @@ describe("Login Screen", () => {
 
   });
 
-
   describe("and isLogin is false", () => {
 
     beforeEach(() => {
@@ -57,6 +56,5 @@ describe("Login Screen", () => {
     });
 
   });
- 
 
 });
